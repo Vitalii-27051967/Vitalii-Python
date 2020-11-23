@@ -101,3 +101,4 @@ for symbol_1 in my_string:
 print(my_list_3)
 
 print("Конец домашнего задания")
+print("Фапйлы проба")
