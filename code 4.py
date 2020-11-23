@@ -99,3 +99,5 @@ for symbol_1 in my_string:
     for symbol_2 in my_string:
         my_list_3.append(int(symbol_1 + symbol_2))
 print(my_list_3)
+
+print("Конец домашнего задания")
