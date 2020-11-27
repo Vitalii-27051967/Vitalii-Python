@@ -1,6 +1,7 @@
 # 1. Дано целое число (int). Определить сколько нулей в этом числе.
 ##########################################################
-### Вариант 1
+# Вариант 1 #####
+
 print("Задание 1, вариант решения 1", end="\n\n")
 try:
     value_1 = input("Введите целое число для определения количества нулей в нём: ")
@@ -14,7 +15,7 @@ except ValueError:
     print("Это не целое число")
 print(end="\n\n")
 
-### Вариант 2
+# Вариант 2, более интересное))) #####
 
 print("Задание 1, вариант решения 2", end="\n\n")
 my_string = input("Введите целое число для определения количества нулей в нём: ")
@@ -124,7 +125,9 @@ print(end="\n\n")
 # my_str = "My_long str", l_limit = "o", r_limit = "t" -> sub_str = "ng s"
 ###########################################################
 
-print("Задание 8", end="\n\n")
+# Вариант 1 #######
+
+print("Задание 8 вариант 1", end="\n\n")
 my_str = "My long string"
 l_limit = "o"
 r_limit = "t"
@@ -139,6 +142,21 @@ while my_str[dig] != r_limit:
     dig_r = dig
 sub_str = my_str[dig_l + 1:dig_r:]
 print("Часть строки: ", sub_str)
+print(end="\n\n")
+
+
+# Вариант 2, более правильный ))) #######
+
+print("Задание 8 вариант 2", end="\n\n")
+my_str = "My long string"
+l_limit = "o"
+r_limit = "t"
+arrey = []
+array = my_str.split(l_limit)
+result_1 = str(array[1])
+result_2 = result_1.split(r_limit)
+result = str(result_2[0])
+print("Часть строки: ", result)
 print(end="\n\n")
 
 
