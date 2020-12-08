@@ -57,7 +57,7 @@ def rnd_email(cl_domains, cl_name):
     domains = cl_domains[random.randint(0, len(cl_domains) - 1)]  # случайные домены из cl_domains
     names = cl_name[random.randint(0, len(cl_name) - 1)]  # случайные имена из clear_name
     letters = "".join(random.choice(string.ascii_lowercase) for _ in range(random.randint(5, 7)))   # случайные буквы
-    r_mail = f"{names}.{rand_int}@{letters}.{domains}"       # переменная, если с ней нужно дальше работать
+    r_mail = f"{names}.{rand_int}@{letters}.{domains}"       # сборка адреса из составляющих
     return r_mail
 
 
