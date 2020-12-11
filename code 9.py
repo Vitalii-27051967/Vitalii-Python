@@ -7,16 +7,29 @@ import string
 my_dir = "c:/Files for Me"
 os.chdir(my_dir)
 
-# file_name = "111.json"        # | Для облегчения проверки
-# file_name = "111.csv"         # |
-# file_name = "111.txt"         # |
+# file_wey = "c:/Files for Me/111.json"        # | Для облегчения проверки
+# file_wey = "c:/Files for Me/111.csv"         # |
+# file_wey = "c:/Files for Me/111.txt"         # |
 
-file_name = input("Введите название файла для генерации файла: ")
+file_wey = input("Введите название файла для генерации файла: ")
 
 try:
 
-    point = file_name.rindex(".")
-    index = file_name[point:].lower()
+    pnt = file_wey.rindex(".")
+    spr = file_wey.rindex("/")
+    wey = file_wey[:spr:]
+
+    file_name = file_wey[spr+1::]
+    index = file_wey[pnt:].lower()
+
+    print("Путь", wey)
+    print("Название файла", file_name)
+    print("рсширение файла", index)
+
+    os.chdir(wey)
+    list_dir = os.listdir(wey)  # смотрит по данному адресу
+    print("Что находится в", wey, "\n", list_dir, "\n", end="\n\n")
+
     if index == ".txt":         # ############################################################################### TXT
 
         def words():    # Генерация случайных букв
@@ -55,7 +68,7 @@ try:
             data = []
             for line in file.readlines():
                 data.append(line.strip())
-            print("Считка из файла", data, sep="\n")
+            print("Проверка записи", data, sep="\n")
             print("Количество знакомест", len(data_list))
 
     elif index == ".csv":           # ############################################################################ CSV
@@ -85,7 +98,7 @@ try:
             reader = csv.reader(csv_file)
             for line in reader:
                 data.append(line)
-        print("Считка из файла", data, sep="\n")
+        print("Проверка записи", data, sep="\n")
 
     elif index == ".json":          # ########################################################################### JSON
         def key_d(var_1):  # генерирует строки (ключи заданного размера)
@@ -118,7 +131,7 @@ try:
             person_json = json.load(file)
         print("Проверка записи", person_json, "\n", type(person_json), "\n", "Количество элементов", len(person_json))
     else:
-        print("Введите корректное расширение файла (.txt, .json, .csv)")
+        print("Unsupported file format")
 
 except ValueError:
     print("Введите КОРРЕКТНОЕ значение названия")
