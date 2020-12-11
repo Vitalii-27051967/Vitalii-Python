@@ -77,6 +77,7 @@ try:
         val_new = list([])
         for _ in range(n):  # записываем данные в количестве n случайных строк из 1 и 0
             val_new.append(csv_d(m))
+
         with open(file_name, "w", newline="") as csv_file:  # записываем данные в файл
             writer = csv.writer(csv_file)
             writer.writerows(val_new)
