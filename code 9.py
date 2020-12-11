@@ -8,10 +8,10 @@ my_dir = "c:/Files for Me"
 os.chdir(my_dir)
 
 # file_name = "111.json"        # | Для облегчения проверки
-# file_name = "111.csv"         # |
+file_name = "111.csv"         # |
 # file_name = "111.txt"         # |
 
-file_name = input("Введите название файла для генерации файла: ")
+# file_name = input("Введите название файла для генерации файла: ")
 
 try:
 
@@ -48,7 +48,6 @@ try:
                 flag = 1
 
         data_list = list(txt_s)
-        # data_list = list(txt())
         with open(file_name, "w") as file:
             for line in data_list:
                 file.write(f"{line}")
@@ -66,7 +65,7 @@ try:
             value_data = []
             my_str = ""
             for i in range(s):                      # разбиваем строку на элементы, потом перезаписываем с разделителем
-                my_str = my_str + str(code[i])
+                my_str = my_str + code[i]
                 if i != m - 1:                      # чтоб не записало разделитель к концу строки
                     my_str = my_str + ";"           # по разделителю - интересно было проверять в Exel
             value_data.append(my_str)
@@ -74,7 +73,7 @@ try:
 
         n = random.randint(3, 10)  # генерируем количество строк
         m = random.randint(3, 10)  # генерируем количество столбцов
-        val_new = list([])
+        val_new = list()
         for _ in range(n):  # записываем данные в количестве n случайных строк из 1 и 0
             val_new.append(csv_d(m))
 
@@ -94,22 +93,15 @@ try:
             return let_abc
 
 
-        # целое число в диапазоне от -100 до 100, или число типа float в диапазоне от 0 до 1
-        # Просто как вариант работы рандомной функции через бинарные числа (чтоб не скучно было). Разложить рандомное
-        # число по 0 и 1, а затем использовать разряды этого числа для различных манипуляций.
-        # Другими словами - количество различных условий можно вытаскивать из разрядов рандомного бинарного числа.
-
-
         def dig_d():
-            rand_code = random.randint(0, 3)
-            code = str(bin(rand_code)[2::]).zfill(2)    # строка ранд. знач. от "00" --> 0 до "11" --> 3
-            if code[-1] == "1":
+            rand_code = random.randint(0, 2)
+            if rand_code == 0:
                 data_j = random.randint(-100, 100)      # случайные числа от -100 до 100
+            elif rand_code == 1:
+                data_j = random.uniform(0, 1)           # случайные числа с запятой от 0 до 1
             else:
-                if code[-2] == "1":
-                    data_j = "True"
-                else:
-                    data_j = "False"
+                a = [True, False]
+                data_j = random.choice(a)
             return data_j
 
 
@@ -125,7 +117,8 @@ try:
         with open(file_name, "r") as file:        # Чтение из файла для проверки
             person_json = json.load(file)
         print("Проверка записи", person_json, "\n", type(person_json), "\n", "Количество элементов", len(person_json))
-    print("Введите корректное расширение файла (.txt, .json, .csv)")
+    else:
+        print("Введите корректное расширение файла (.txt, .json, .csv)")
 
 except ValueError:
     print("Введите КОРРЕКТНОЕ значение названия")
