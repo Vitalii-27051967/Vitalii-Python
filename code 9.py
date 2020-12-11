@@ -11,7 +11,7 @@ os.chdir(my_dir)
 # file_wey = "c:/Files for Me/111.csv"         # |
 # file_wey = "c:/Files for Me/111.txt"         # |
 
-file_wey = input("Введите название файла для генерации файла: ")
+file_wey = input("Введите название файла вместе с путём: ")
 
 try:
 
