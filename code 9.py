@@ -17,8 +17,8 @@ try:
 
     pnt = file_wey.rindex(".")
     spr = file_wey.rindex("/")
-    wey = file_wey[:spr:]
 
+    wey = file_wey[:spr:]
     file_name = file_wey[spr+1::]
     index = file_wey[pnt:].lower()
 
