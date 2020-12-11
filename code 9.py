@@ -14,53 +14,41 @@ os.chdir(my_dir)
 file_name = input("Введите название файла для генерации файла: ")
 
 try:
+
     point = file_name.rindex(".")
     index = file_name[point:].lower()
-    if index == ".txt":       # ############################################################################### TXT
+    if index == ".txt":         # ############################################################################### TXT
 
-        def dig():
-            rand_int = random.randint(0, 999)  # случайные числа от 0 до 999
-            return rand_int
-
-
-        def words():
+        def words():    # Генерация случайных букв
             var_1 = random.randint(1, 10)
-            let_abc = "".join(random.choice(string.ascii_lowercase) for _ in range(var_1))  # случ. буквы
+            let_abc = "".join(random.choice(string.ascii_lowercase) for _ in range(var_1))
             if var_1 <= 5:
                 let_abc = let_abc.title()
             return let_abc
 
+        out_mark = [" ", ". ", "! ", "\n", "? "]
+        in_mark = [", ", " - ", ": ", "; "]
+        txt_s = ""
+        flag = 0
 
-        def in_m(arr):  # знаки пунктуации
-            mark = random.randint(0, len(arr) - 1)
-            kom = arr[mark]
-            return kom
+        while flag != 1:                    # генерация рандомного текста до 1000 знакомест
+            var = random.randint(1, 2)      # случайный выбор числа или набора букв
+            if var == 1:
+                i_n = random.randint(0, len(in_mark) - 1)
+                w_n = words()               # добавление набора букв
+                ttt = w_n + in_mark[i_n]    # + добавление знаков внутристочных
+            else:
+                rand_int = random.randint(0, 999)  # случайные числа от 0 до 999
+                i_v = random.randint(0, len(out_mark) - 1)
+                d_n = str(rand_int)                 # добавление набора цифр
+                ttt = d_n + out_mark[i_v]        # + добавление знаков окончания строки, перхода на др.строку
+            if len(txt_s) + len(ttt) <= 1000:    # проверка количетва знакомест
+                txt_s = txt_s + ttt     # создание текста из набра цифр, наборов букв и различных знаков
+            else:
+                flag = 1
 
-
-        def txt():
-            out_mark = [" ", ". ", "! ", "\n", "? "]
-            in_mark = [", ", " - ", ": ", "; "]
-            txt_s = ""
-            flag = 0
-
-            while flag != 1:                    # генерация рандомного текста до 1000 знакомест
-                var = random.randint(1, 2)     # случайный выбор числа или набора букв
-                if var == 1:
-                    i_n = random.randint(0, len(in_mark) - 1)
-                    w_n = words()               # добавление набора букв
-                    ttt = w_n + in_mark[i_n]    # + добавление знаков внутристочных
-                else:
-                    i_v = random.randint(0, len(out_mark) - 1)
-                    d_n = str(dig())                 # добавление набора цифр
-                    ttt = d_n + out_mark[i_v]        # + добавление знаков окончания строки, перхода на др.строку
-                if len(txt_s) + len(ttt) <= 1000:    # проверка количетва знакомест
-                    txt_s = txt_s + ttt     # создание текста из набра цифр, наборов букв и различных знаков
-                else:
-                    flag = 1
-            return txt_s
-
-
-        data_list = list(txt())
+        data_list = list(txt_s)
+        # data_list = list(txt())
         with open(file_name, "w") as file:
             for line in data_list:
                 file.write(f"{line}")
@@ -68,10 +56,10 @@ try:
             data = []
             for line in file.readlines():
                 data.append(line.strip())
-        print("Считка из файла", data, sep="\n")
-        print("Количество знакомест", len(data_list))
+            print("Считка из файла", data, sep="\n")
+            print("Количество знакомест", len(data_list))
 
-    elif index == ".csv":       # ############################################################################### CSV
+    elif index == ".csv":           # ############################################################################ CSV
         def csv_d(s):
             my_str = random.getrandbits(s)          # генерируем бинарные значения числа размером s разрядов
             code = str(bin(my_str)[2::]).zfill(s)   # делаем срез получ. знач. и восстанавливаем нули в начале
@@ -99,7 +87,7 @@ try:
                 data.append(line)
         print("Считка из файла", data, sep="\n")
 
-    elif index == ".json":               # ################################################################### JSON
+    elif index == ".json":          # ########################################################################### JSON
         def key_d(var_1):  # генерирует строки (ключи заданного размера)
             let_abc = "".join(random.choice(string.ascii_lowercase) for _ in range(var_1))  # случ. буквы
             return let_abc
