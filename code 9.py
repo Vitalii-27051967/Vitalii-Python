@@ -8,10 +8,10 @@ my_dir = "c:/Files for Me"
 os.chdir(my_dir)
 
 # file_name = "111.json"        # | Для облегчения проверки
-file_name = "111.csv"         # |
+# file_name = "111.csv"         # |
 # file_name = "111.txt"         # |
 
-# file_name = input("Введите название файла для генерации файла: ")
+file_name = input("Введите название файла для генерации файла: ")
 
 try:
 
