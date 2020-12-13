@@ -78,10 +78,12 @@ print("\n")
 
 # 4. Написать функцию сортировки по количеству слов в поле "text"
 # ---------------------------------------------------------------------------------------------------------------
+# Тут вопрос: There’s считать как одно слово или как There is? Делал через value = dic["text"].replace("‘", "").
+# Потом убрал. Поскольку, как я понимаю, тут важен объём информации что про них написан, а не точное количество слов.
 
 
 def by_word_count(dic):
-    value = dic["text"].replace("‘", "")
+    value = dic["text"]
     word_count = re.findall(r'\w+', value)
     return len(word_count)
 
@@ -91,4 +93,7 @@ new_list_st = sorted(data_from_f, key=by_word_count)
 # Проверка работы функции сортировки данных по полю текст ---------------->
 print("4. Проверка сорт. словаря по кол. слов:", "\n")
 for num in range(len(new_list_st)):
-    print("\t", num, "Количество слов =", len(new_list_st[num]["text"].split()), "Имя", data_from_f[num]["name"])
+    a = new_list_st[num]["text"]
+    b = re.findall(r'\w+', a)
+    num_w = len(b)
+    print("\t", num, "Количество слов =", num_w, "Имя", data_from_f[num]["name"])
