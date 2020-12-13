@@ -73,7 +73,7 @@ new_list_d = sorted(data_from_f, key=by_date)
 # Проверка работы функции сортировки данных end date ---------------->
 print("3. Проверка сортировки словаря по end date", "\n")
 for i in range(len(new_list_d)):
-    print("\t", i, new_list_d[i]["name"], "\t"*2, "Дата", new_list_d[i]["years"])
+    print("\t", i, new_list_d[i]["name"].ljust(20, " "), new_list_d[i]["years"])
 print("\n")
 
 # 4. Написать функцию сортировки по количеству слов в поле "text"
@@ -91,4 +91,4 @@ new_list_st = sorted(data_from_f, key=by_word_count)
 # Проверка работы функции сортировки данных по полю текст ---------------->
 print("4. Проверка сорт. словаря по кол. слов:", "\n")
 for num in range(len(new_list_st)):
-    print("\t", num, "Слов =", len(new_list_st[num]["text"].split()), "Имя", data_from_f[num]["name"])
+    print("\t", num, "Количество слов =", len(new_list_st[num]["text"].split()), "Имя", data_from_f[num]["name"])
