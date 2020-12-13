@@ -7,11 +7,11 @@ import string
 my_dir = "c:/Files for Me"
 os.chdir(my_dir)
 
-# file_wey = "c:/Files for Me/111.json"        # | Для облегчения проверки
+file_wey = "c:/Files for Me/111.json"        # | Для облегчения проверки
 # file_wey = "c:/Files for Me/111.csv"         # |
 # file_wey = "c:/Files for Me/111.txt"         # |
 
-file_wey = input("Введите название файла вместе с путём: ")
+# file_wey = input("Введите название файла вместе с путём: ")
 
 try:
 
@@ -118,13 +118,14 @@ try:
             return data_j
 
 
-        def jsn():
+        def jsn(nr):
             number_of_keys = random.randint(5, 20)
-            my_dict = {key_d(5): dig_d() for _ in range(number_of_keys)}    # генерация ключей из 5 симв. и данных
+            my_dict = {key_d(nr): dig_d() for _ in range(number_of_keys)}    # генерация ключей из 5 симв. и данных
             return my_dict
 
 
-        person = jsn()
+        person = jsn(5)
+
         with open(file_name, "w") as file:        # запись того что получилось в файл
             json.dump(person, file)
         with open(file_name, "r") as file:        # Чтение из файла для проверки
