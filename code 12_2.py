@@ -13,7 +13,6 @@
 #
 # 2.3) Написать функцию, которая сохраняет результат пункта 2.2 в json файл.
 
-
 import os
 import re
 import calendar
@@ -25,8 +24,8 @@ print("Проверка наличия папки -->", check_file)
 if check_file is False:                         # если папка не существувет, то создаём её.
     os.mkdir("c:/Files for Me")
 os.chdir(my_dir)
-file_name = "authors.txt"                       # Имя файла как по умолчанию :-)
-file_data_json = "authors_json.json"
+file_name = "authors.txt"                       # Имя файла как по умолчанию для чтения
+file_data_json = "authors_json.json"            # Название файла для записи данных JSON
 
 #  _______________________________________________________________________________________________________________
 #   2.1) написать функцию, которая считывает данные из этого файла "authors.txt"
@@ -34,7 +33,7 @@ file_data_json = "authors_json.json"
 with open(file_name, "r", encoding='utf-8') as file:
     data = []
     for line in file.readlines():
-        data.append(line.strip())                       # Строка данных считанных их файла
+        data.append(line.strip())                       # Строка данных считанных из файла
 print("\t\n", "Считанные данные из файла: ", end="\n\n")
 [print(dat) for dat in data]
 print(end="\n\n")
@@ -43,7 +42,7 @@ print(end="\n\n")
 #  _______________________________________________________________________________________________________________
 # 2.2) Написать функцию, которая принимает список строк полученной в пункте 2.1, и возвращает список словарей
 
-def sep(n):
+def sep(n):                 # Делает разбивку текста на дату и автора
     d_bd = n.split("-")             # отделяем дату от текста
     d_bd_1 = d_bd[0]
     d_bd = d_bd[1].split("'s")      # отделяем автора из текста
@@ -51,15 +50,15 @@ def sep(n):
     return d_bd_1, d_bd_2
 
 
-def dig_month(n):
+def dig_month(n):           # Преобразует дату с текстом к числовому формату dd/mm/yyyy
     part_2_d = ""
     part = n[0].split()                                         # Разбиваем дату на составляющие
-    part_1 = "".join(re.findall(r'\d+', part[0])).zfill(2)      # Число месяца
-    part_2 = "".join(re.findall(r'\D+', part[1]))               # Месяц
+    part_1 = "".join(re.findall(r'\d+', part[0])).zfill(2)      # Число месяца, приводим к формату DD /mm/yyyy
+    part_2 = "".join(re.findall(r'\D+', part[1]))               # Месяц в текстовом формате
     part_3 = "".join(re.findall(r'\d+', part[2]))       # Год
     for k, v in enumerate(calendar.month_name):         # Делаем замену текстовых названий мес. на цифровые
         if part_2 == v:
-            part_2_d = str(k).zfill(2)
+            part_2_d = str(k).zfill(2)                  # Приводим к формату dd/ MM /yyyy
     dat_d = f"{part_1}/{part_2_d}/{part_3}"
     return dat_d
 
@@ -67,6 +66,10 @@ def dig_month(n):
 data_begin = []
 begin = dict()
 dict_begin_full = []
+
+# Создание словарей, с датами по условию наличия в тексте "birthday" или "death".
+# В условии нет данных на разбивку на 2 отдельных списка, или добавления дополнительного ключа в словарь, так что
+# пишем всё в один список dict_begin_full в формате {"name": name, "date": date}
 
 for num in data:
     if re.search(r"\bbirthday\b", num.lower()) and re.search(r"'s", num.lower())\
